@@ -34,4 +34,13 @@ full year, _Beta_ after that.
 
 ## 19.0.1.0.0 (Alpha) – protocol
 
-Not released yet. The protocol is added with the release.
+Checks before the tag on 19.11.2026.
+
+| Item                                  | Result                                                                                                                                                                                                                            |
+| ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tests in a fresh database             | passed on the working tree of 19.11.2026: 35 tests (27 of `mail_send_cc_bcc`, 8 of `account_move_send_cc_bcc`), 0 failures, 0 errors, 0 skipped. Repeated on the tagged commit (step 4)                                           |
+| Coverage lines / branches             | 100 % of lines and 98.25 % of branches                                                                                                                                                                                            |
+| pre-commit, translations              | `pre-commit run --all-files` clean on 19.11.2026; every `i18n/de.po` complete                                                                                                                                                     |
+| No real data                          | only invented persons and businesses (checked on 19.11.2026)                                                                                                                                                                      |
+| Real mail server                      | one message with To, Cc and Bcc sent through Microsoft 365 on 19.11.2026: one item in the sent folder, the Bcc recipient got it and is not visible to the others. Not sent this way: an invoice with its PDF from the Send dialog |
+| Test protocol attached to the release | by the workflow `release` on the tag (GitHub release of 19.0.1.0.0)                                                                                                                                                               |
