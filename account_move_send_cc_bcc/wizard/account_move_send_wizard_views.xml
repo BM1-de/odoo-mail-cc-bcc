@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="account_move_send_wizard_form" model="ir.ui.view">
+        <field name="name">account.move.send.wizard.form.cc_bcc</field>
+        <field name="model">account.move.send.wizard</field>
+        <field name="inherit_id" ref="account.account_move_send_wizard_form" />
+        <field name="arch" type="xml">
+            <field name="subject" position="before">
+                <field
+                    name="mail_partner_cc_ids"
+                    widget="many2many_tags_email"
+                    placeholder="Add Cc recipients..."
+                    options="{'no_quick_create': True}"
+                    context="{'show_email': True, 'form_view_ref': 'base.view_partner_simple_form'}"
+                />
+                <field
+                    name="mail_partner_bcc_ids"
+                    widget="many2many_tags_email"
+                    placeholder="Add Bcc recipients..."
+                    options="{'no_quick_create': True}"
+                    context="{'show_email': True, 'form_view_ref': 'base.view_partner_simple_form'}"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>

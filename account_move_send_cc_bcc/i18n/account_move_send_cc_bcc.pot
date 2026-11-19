@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_move_send_cc_bcc
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20261015\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-19 12:28+0000\n"
+"PO-Revision-Date: 2026-11-19 12:28+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_move_send_cc_bcc
+#: model:ir.model,name:account_move_send_cc_bcc.model_account_move_send
+msgid "Account Move Send"
+msgstr ""
+
+#. module: account_move_send_cc_bcc
+#: model:ir.model,name:account_move_send_cc_bcc.model_account_move_send_wizard
+msgid "Account Move Send Wizard"
+msgstr ""
+
+#. module: account_move_send_cc_bcc
+#: model_terms:ir.ui.view,arch_db:account_move_send_cc_bcc.account_move_send_wizard_form
+msgid "Add Bcc recipients..."
+msgstr ""
+
+#. module: account_move_send_cc_bcc
+#: model_terms:ir.ui.view,arch_db:account_move_send_cc_bcc.account_move_send_wizard_form
+msgid "Add Cc recipients..."
+msgstr ""
+
+#. module: account_move_send_cc_bcc
+#: model:ir.model.fields,field_description:account_move_send_cc_bcc.field_account_move_send_wizard__mail_partner_bcc_ids
+msgid "Bcc"
+msgstr ""
+
+#. module: account_move_send_cc_bcc
+#: model:ir.model.fields,field_description:account_move_send_cc_bcc.field_account_move_send_wizard__mail_partner_cc_ids
+msgid "Cc"
+msgstr ""
+
+#. module: account_move_send_cc_bcc
+#: model:ir.model.fields,field_description:account_move_send_cc_bcc.field_account_move_send__display_name
+#: model:ir.model.fields,field_description:account_move_send_cc_bcc.field_account_move_send_wizard__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: account_move_send_cc_bcc
+#: model:ir.model.fields,field_description:account_move_send_cc_bcc.field_account_move_send__id
+#: model:ir.model.fields,field_description:account_move_send_cc_bcc.field_account_move_send_wizard__id
+msgid "ID"
+msgstr ""

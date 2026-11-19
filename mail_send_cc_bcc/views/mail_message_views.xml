@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Copyright 2026 Baumgärtner Marketing GmbH
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+    <record id="mail_message_view_form" model="ir.ui.view">
+        <field name="name">mail.message.form.mail_send_cc_bcc</field>
+        <field name="model">mail.message</field>
+        <field name="inherit_id" ref="mail.mail_message_view_form" />
+        <field name="arch" type="xml">
+            <field name="partner_ids" position="after">
+                <field name="partner_cc_ids" widget="many2many_tags" />
+                <field name="partner_bcc_ids" widget="many2many_tags" />
+            </field>
+        </field>
+    </record>
+</odoo>
