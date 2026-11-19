@@ -285,7 +285,7 @@ class TestSingleEmail(MailCommon):
     def test_many_recipients_with_bcc_stay_hidden(self):
         """With a blind copy the emails are always common ones: the header
         of the emails of Odoo would show who got it."""
-        self.env["ir.config_parameter"].sudo().set_param("mail.batch_size", "2")
+        self.env["ir.config_parameter"].sudo().set_int("mail.batch_size", 2)
         self._post(
             partner_ids=(self.customer + self.customer_2).ids,
             partner_cc_ids=self.copy.ids,

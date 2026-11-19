@@ -2,9 +2,9 @@
 
 # Cc und Bcc für Odoo
 <!-- /!\ Non OCA Context : Set here the badge of your runbot / runboat instance. -->
-[![Pre-commit Status](https://github.com/BM1-de/odoo-mail-cc-bcc/actions/workflows/pre-commit.yml/badge.svg?branch=19.0)](https://github.com/BM1-de/odoo-mail-cc-bcc/actions/workflows/pre-commit.yml?query=branch%3A19.0)
-[![Build Status](https://github.com/BM1-de/odoo-mail-cc-bcc/actions/workflows/test.yml/badge.svg?branch=19.0)](https://github.com/BM1-de/odoo-mail-cc-bcc/actions/workflows/test.yml?query=branch%3A19.0)
-[![codecov](https://codecov.io/gh/BM1-de/odoo-mail-cc-bcc/branch/19.0/graph/badge.svg)](https://codecov.io/gh/BM1-de/odoo-mail-cc-bcc)
+[![Pre-commit Status](https://github.com/BM1-de/odoo-mail-cc-bcc/actions/workflows/pre-commit.yml/badge.svg?branch=20.0)](https://github.com/BM1-de/odoo-mail-cc-bcc/actions/workflows/pre-commit.yml?query=branch%3A20.0)
+[![Build Status](https://github.com/BM1-de/odoo-mail-cc-bcc/actions/workflows/test.yml/badge.svg?branch=20.0)](https://github.com/BM1-de/odoo-mail-cc-bcc/actions/workflows/test.yml?query=branch%3A20.0)
+[![codecov](https://codecov.io/gh/BM1-de/odoo-mail-cc-bcc/branch/20.0/graph/badge.svg)](https://codecov.io/gh/BM1-de/odoo-mail-cc-bcc)
 <!-- /!\ Non OCA Context : Set here the badge of your translation instance. -->
 
 <!-- /!\ do not modify above this line -->
@@ -33,30 +33,30 @@ Bcc:  archiv@agentur.example.com        (sieht niemand)
 
 ## Was die Module tun
 
-- Odoo 19 kennt beim Versand an Kunden weder Cc noch Bcc und verschickt je Empfänger eine
-  eigene E-Mail: Eine Rechnung an zwei Personen verlässt den Server als zwei E-Mails. Mit
-  den Modulen ist es eine.
+- Odoo 20 bringt Cc im Mail-Dialog mit, aber kein Bcc, und im Senden-Dialog der Rechnung
+  keins von beiden. Es verschickt je Empfänger eine eigene E-Mail: Eine Rechnung an zwei
+  Personen verlässt den Server als zwei E-Mails. Mit den Modulen ist es eine.
 - Wer eine Blindkopie bekommt, sieht niemand: weder die anderen Empfänger noch Portalbenutzer,
   die die Nachrichten ihres Belegs lesen.
 - Zwei oder mehr Kunden in *An* bekommen ebenfalls eine gemeinsame E-Mail.
 - Follower des Belegs und interne Benutzer in *An* behalten die Benachrichtigung von Odoo
   mit den Schaltflächen ihrer Gruppe.
-- Odoo 20 bringt Cc im Mail-Dialog selbst mit. Die Module benutzen dieselben Feldnamen; nach
-  einem Upgrade bleiben die Cc-Empfänger alter Nachrichten erhalten. Unter Odoo 20 ergänzen
-  sie Bcc, Cc und Bcc im Rechnungsversand und den Versand als eine E-Mail.
+- Die Fassung für Odoo 19 (Zweig `19.0`) ergänzt auch Cc, mit den Feldnamen von Odoo 20;
+  nach einem Upgrade bleiben die Cc-Empfänger alter Nachrichten erhalten.
 
 ![Mail-Dialog eines Angebots mit Cc und Bcc](docs/screenshots/mail-dialog.png)
 
 ## Einrichtung
 
-Nichts einzurichten: installieren, dann stehen *Cc* und *Bcc* unter *An*.
+Nichts einzurichten. Im Mail-Dialog blendet die Schaltfläche *Cc* neben den Empfängern die
+Zeilen *Cc* und *Bcc* ein; im Senden-Dialog der Rechnung stehen beide unter *An*.
 
 ## Grenzen
 
-- Cc und Bcc gibt es für die Nachricht an einem Beleg, nicht beim Versand an mehrere Belege
-  auf einmal (Massenversand, Sammelversand von Rechnungen).
-- Das kleine Nachrichtenfeld im Chatter hat kein Cc und Bcc; dafür den vollständigen
-  Mail-Dialog öffnen.
+- Bcc und die eine gemeinsame E-Mail gibt es für die Nachricht an einem Beleg, nicht beim
+  Versand an mehrere Belege auf einmal (Massenversand, Sammelversand von Rechnungen).
+- Das kleine Nachrichtenfeld im Chatter hat das Cc von Odoo, aber kein Bcc; dafür den
+  vollständigen Mail-Dialog öffnen.
 - Eine E-Mail hat einen Zustand: Ist sie versandt, gelten alle Empfänger als benachrichtigt.
 
 ## Mehr Dokumentation
@@ -78,8 +78,8 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[account_move_send_cc_bcc](account_move_send_cc_bcc/) | 19.0.1.0.0 | <a href='https://github.com/bm1-phillip'><img src='https://github.com/bm1-phillip.png' width='32' height='32' style='border-radius:50%;' alt='bm1-phillip'/></a> | Cc and Bcc recipients when sending an invoice by email, sent as one single email to all recipients
-[mail_send_cc_bcc](mail_send_cc_bcc/) | 19.0.1.0.0 | <a href='https://github.com/bm1-phillip'><img src='https://github.com/bm1-phillip.png' width='32' height='32' style='border-radius:50%;' alt='bm1-phillip'/></a> | Cc and Bcc recipients in the email composer, sent as one single email to all recipients instead of one email per recipient
+[account_move_send_cc_bcc](account_move_send_cc_bcc/) | 20.0.1.0.0 | <a href='https://github.com/bm1-phillip'><img src='https://github.com/bm1-phillip.png' width='32' height='32' style='border-radius:50%;' alt='bm1-phillip'/></a> | Cc and Bcc recipients when sending an invoice by email, sent as one single email to all recipients
+[mail_send_cc_bcc](mail_send_cc_bcc/) | 20.0.1.0.0 | <a href='https://github.com/bm1-phillip'><img src='https://github.com/bm1-phillip.png' width='32' height='32' style='border-radius:50%;' alt='bm1-phillip'/></a> | Bcc recipients in the email composer, and one single email to the To, Cc and Bcc recipients instead of one email per recipient
 
 [//]: # (end addons)
 

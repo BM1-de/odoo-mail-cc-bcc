@@ -7,25 +7,16 @@
         <field name="model">mail.compose.message</field>
         <field name="inherit_id" ref="mail.email_compose_message_wizard_form" />
         <field name="arch" type="xml">
-            <field name="subject" position="before">
-                <field
-                    name="partner_cc_ids"
-                    string="Cc"
-                    widget="many2many_tags_email"
-                    placeholder="Add Cc recipients..."
-                    groups="base.group_user"
-                    invisible="composition_mode != 'comment' or subtype_is_log"
-                    options="{'edit_tags': True}"
-                    context="{'force_email': True, 'show_email': True, 'form_view_ref': 'base.view_partner_simple_form'}"
-                />
+            <!-- shown with the Cc line of Odoo -->
+            <field name="subject_placeholder" position="before">
                 <field
                     name="partner_bcc_ids"
                     string="Bcc"
                     widget="many2many_tags_email"
                     placeholder="Add Bcc recipients..."
                     groups="base.group_user"
-                    invisible="composition_mode != 'comment' or subtype_is_log"
-                    options="{'edit_tags': True}"
+                    invisible="composition_mode != 'comment' or subtype_is_log or (not partner_cc_allowed and not partner_bcc_ids)"
+                    readonly="context.get('default_message_id')"
                     context="{'force_email': True, 'show_email': True, 'form_view_ref': 'base.view_partner_simple_form'}"
                 />
             </field>

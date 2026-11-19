@@ -1,10 +1,12 @@
 {
-  "Account Move Send": "Buchungssatz senden",
-  "Account Move Send Wizard": "Assistent zum Senden von Buchungssätzen",
   "Add Bcc recipients...": "Bcc-Empfänger hinzufügen …",
   "Add Cc recipients...": "Cc-Empfänger hinzufügen …",
-  "Bcc": "Bcc",
-  "Cc": "Cc",
+  "Bcc": "BCC",
+  "Cc": "CC",
+  "Cc and Bcc recipients when sending an invoice by email, sent as one single email to all recipients": "Cc- und Bcc-Empfänger beim Versand einer Rechnung per E-Mail, als eine einzige E-Mail an alle Empfänger",
   "Display Name": "Anzeigename",
-  "ID": "ID"
+  "ID": "ID",
+  "Invoice Email Cc and Bcc": "Rechnungsversand mit Cc und Bcc",
+  "Send Invoice Wizard": "Assistent zum Senden von Rechnungen",
+  "Shared Send Invoice Wizard Functions": "Gemeinsame Funktionen des Assistenten zum Senden von Rechnungen"
 }

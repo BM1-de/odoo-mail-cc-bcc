@@ -4,7 +4,7 @@
     "name": "Invoice Email Cc and Bcc",
     "summary": "Cc and Bcc recipients when sending an invoice by email, sent as "
     "one single email to all recipients",
-    "version": "19.0.1.0.0",
+    "version": "20.0.1.0.0",
     "category": "Accounting/Accounting",
     "website": "https://github.com/BM1-de/odoo-mail-cc-bcc",
     "author": "Baumgärtner Marketing GmbH",

@@ -1,8 +1,8 @@
 - Open the full composer on a document, for example with *Send by Email* on a
   quotation or with *Send message* and the button *Open Full Composer* in the
   chatter.
-- Enter the recipients in *To*, *Cc* and *Bcc* and send. One email leaves
-  Odoo.
+- Click *Cc* next to the recipients: the lines *Cc* and *Bcc* appear. Enter
+  the recipients and send. One email leaves Odoo.
 
 ![The email composer with Cc and Bcc](../static/description/composer.png)
 

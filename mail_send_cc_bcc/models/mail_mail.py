@@ -6,13 +6,6 @@ from odoo import fields, models, tools
 class MailMail(models.Model):
     _inherit = "mail.mail"
 
-    # Same name and relation table as the field of Odoo 20.
-    recipient_cc_ids = fields.Many2many(
-        "res.partner",
-        relation="mail_mail_res_partner_cc_rel",
-        string="Cc (Partners)",
-        context={"active_test": False},
-    )
     recipient_bcc_ids = fields.Many2many(
         "res.partner",
         relation="mail_mail_res_partner_bcc_rel",

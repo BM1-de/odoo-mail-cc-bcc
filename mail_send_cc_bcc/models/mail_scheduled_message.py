@@ -7,9 +7,6 @@ class MailScheduledMessage(models.Model):
     _inherit = "mail.scheduled.message"
 
     def _notification_parameters_whitelist(self):
-        # A message scheduled in the composer keeps its Cc and Bcc recipients in
+        # A message scheduled in the composer keeps its Bcc recipients in
         # these parameters; without them here it would be sent without copies.
-        return super()._notification_parameters_whitelist() | {
-            "partner_cc_ids",
-            "partner_bcc_ids",
-        }
+        return super()._notification_parameters_whitelist() | {"partner_bcc_ids"}

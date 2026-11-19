@@ -47,16 +47,16 @@ class MailThread(models.AbstractModel):
     def message_post(
         self, *, partner_ids=None, partner_cc_ids=None, partner_bcc_ids=None, **kwargs
     ):
-        """Accept ``partner_cc_ids`` and ``partner_bcc_ids``, lists of partner
-        IDs like ``partner_ids``: the recipients in Cc and Bcc."""
+        """Accept ``partner_bcc_ids``, a list of partner IDs like
+        ``partner_ids`` and ``partner_cc_ids``: the recipients in Bcc."""
         partner_ids, cc_ids, bcc_ids = self._mail_send_cc_bcc_clean(
             partner_ids, partner_cc_ids, partner_bcc_ids
         )
-        if cc_ids:
-            kwargs["partner_cc_ids"] = cc_ids
         if bcc_ids:
             kwargs["partner_bcc_ids"] = bcc_ids
-        return super().message_post(partner_ids=partner_ids, **kwargs)
+        return super().message_post(
+            partner_ids=partner_ids, partner_cc_ids=cc_ids, **kwargs
+        )
 
     def message_notify(
         self, *, partner_ids=False, partner_cc_ids=None, partner_bcc_ids=None, **kwargs
@@ -71,47 +71,52 @@ class MailThread(models.AbstractModel):
         return super().message_notify(partner_ids=partner_ids, **kwargs)
 
     def _get_message_create_valid_field_names(self):
-        return super()._get_message_create_valid_field_names() | {
-            "partner_cc_ids",
-            "partner_bcc_ids",
-        }
+        return super()._get_message_create_valid_field_names() | {"partner_bcc_ids"}
 
     def _message_create(self, values_list):
-        # like 'partner_ids': lists of IDs become commands
+        # like 'partner_ids': a list of IDs becomes commands
         values_list = [dict(values) for values in values_list]
         for values in values_list:
-            for fname in ("partner_cc_ids", "partner_bcc_ids"):
-                if values.get(fname) and is_list_of(values[fname], int):
-                    values[fname] = [fields.Command.link(pid) for pid in values[fname]]
+            bcc_ids = values.get("partner_bcc_ids")
+            if bcc_ids and is_list_of(bcc_ids, int):
+                values["partner_bcc_ids"] = [
+                    fields.Command.link(pid) for pid in bcc_ids
+                ]
         return super()._message_create(values_list)
 
-    def _notify_get_recipients(self, message, msg_vals=False, **kwargs):
+    def _notify_get_recipients(self, message, **kwargs):
         msg_sudo = message.sudo()
         cc_ids = msg_sudo.partner_cc_ids.ids
         bcc_ids = msg_sudo.partner_bcc_ids.ids
         if not cc_ids and not bcc_ids:
-            return super()._notify_get_recipients(message, msg_vals=msg_vals, **kwargs)
-        msg_vals = dict(msg_vals or {})
-        to_ids = (
-            msg_vals["partner_ids"]
-            if "partner_ids" in msg_vals
-            else msg_sudo.partner_ids.ids
-        )
-        msg_vals["partner_ids"] = list(dict.fromkeys([*to_ids, *cc_ids, *bcc_ids]))
-        # who puts himself in Cc or Bcc wants this copy; Odoo does not notify
-        # the author of a message otherwise
-        author_id = msg_vals.get("author_id") or msg_sudo.author_id.id
-        if self._message_compute_real_author(author_id).id in (*cc_ids, *bcc_ids):
+            return super()._notify_get_recipients(message, **kwargs)
+        # who puts himself in Cc wants this copy; Odoo does not notify the
+        # author of a message otherwise
+        author = self._message_compute_real_author(msg_sudo.author_id.id)
+        if author.id in cc_ids:
             kwargs["notify_author_mention"] = True
-        recipients_data = super()._notify_get_recipients(
-            message, msg_vals=msg_vals, **kwargs
-        )
+        recipients_data = super()._notify_get_recipients(message, **kwargs)
+        if bcc_ids:
+            # Odoo notifies the To and Cc recipients and the followers; add
+            # the Bcc recipients it does not know, the author among them
+            known = {data["id"] for data in recipients_data}
+            message_type = (
+                "user_notification"
+                if kwargs.get("notify_skip_followers")
+                else msg_sudo.message_type
+            )
+            bcc_data = self.env["mail.followers"]._get_recipient_data(
+                self, message_type, msg_sudo.subtype_id.id, bcc_ids
+            )[self.id if self else 0]
+            for pid in bcc_ids:
+                data = bcc_data.get(pid)
+                if data and pid not in known and data["active"] is not False:
+                    recipients_data.append(dict(data, is_cc=False))
         for data in recipients_data:
             data["is_bcc"] = data["id"] in bcc_ids
-            data["is_cc"] = data["id"] in cc_ids and not data["is_bcc"]
             # a copy is a copy of the email, also for users who read their
             # notifications in Odoo
-            if (data["is_cc"] or data["is_bcc"]) and data.get("notif") == "inbox":
+            if (data.get("is_cc") or data["is_bcc"]) and data.get("notif") == "inbox":
                 data["notif"] = "email"
         return recipients_data
 

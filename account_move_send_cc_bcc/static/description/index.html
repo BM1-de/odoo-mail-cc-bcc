@@ -369,7 +369,7 @@ ul.auto-toc {
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! source digest: sha256:979bf6bfcb53cf7a861e9ea5c7d72417aee335296a88a5cc71b6b7ce8c47a3b5
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/BM1-de/odoo-mail-cc-bcc/tree/19.0/account_move_send_cc_bcc"><img alt="BM1-de/odoo-mail-cc-bcc" src="https://img.shields.io/badge/github-BM1--de%2Fodoo--mail--cc--bcc-lightgray.png?logo=github" /></a></p>
+<p><a class="reference external image-reference" href="https://odoo-community.org/page/development-status"><img alt="Alpha" src="https://img.shields.io/badge/maturity-Alpha-red.png" /></a> <a class="reference external image-reference" href="http://www.gnu.org/licenses/agpl-3.0-standalone.html"><img alt="License: AGPL-3" src="https://img.shields.io/badge/license-AGPL--3-blue.png" /></a> <a class="reference external image-reference" href="https://github.com/BM1-de/odoo-mail-cc-bcc/tree/20.0/account_move_send_cc_bcc"><img alt="BM1-de/odoo-mail-cc-bcc" src="https://img.shields.io/badge/github-BM1--de%2Fodoo--mail--cc--bcc-lightgray.png?logo=github" /></a></p>
 <p>Adds the fields <em>Cc</em> and <em>Bcc</em> to the dialog that sends an invoice or a
 credit note by email. The customer, the Cc recipients and the Bcc
 recipients get <strong>one single email</strong> with the invoice attached, instead
@@ -392,14 +392,15 @@ Only for development or testing purpose, do not use in production.
 <li><a class="reference internal" href="#usage" id="toc-entry-1">Usage</a></li>
 <li><a class="reference internal" href="#known-issues-roadmap" id="toc-entry-2">Known issues / Roadmap</a></li>
 <li><a class="reference internal" href="#changelog" id="toc-entry-3">Changelog</a><ul>
-<li><a class="reference internal" href="#section-1" id="toc-entry-4">19.0.1.0.0 (2026-11-19)</a></li>
+<li><a class="reference internal" href="#section-1" id="toc-entry-4">20.0.1.0.0 (2026-11-19)</a></li>
+<li><a class="reference internal" href="#section-2" id="toc-entry-5">19.0.1.0.0 (2026-11-19)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#bug-tracker" id="toc-entry-5">Bug Tracker</a></li>
-<li><a class="reference internal" href="#credits" id="toc-entry-6">Credits</a><ul>
-<li><a class="reference internal" href="#authors" id="toc-entry-7">Authors</a></li>
-<li><a class="reference internal" href="#contributors" id="toc-entry-8">Contributors</a></li>
-<li><a class="reference internal" href="#maintainers" id="toc-entry-9">Maintainers</a></li>
+<li><a class="reference internal" href="#bug-tracker" id="toc-entry-6">Bug Tracker</a></li>
+<li><a class="reference internal" href="#credits" id="toc-entry-7">Credits</a><ul>
+<li><a class="reference internal" href="#authors" id="toc-entry-8">Authors</a></li>
+<li><a class="reference internal" href="#contributors" id="toc-entry-9">Contributors</a></li>
+<li><a class="reference internal" href="#maintainers" id="toc-entry-10">Maintainers</a></li>
 </ul>
 </li>
 </ul>
@@ -411,7 +412,7 @@ Only for development or testing purpose, do not use in production.
 <li>Enter the recipients in <em>To</em>, <em>Cc</em> and <em>Bcc</em> and send. One email
 leaves Odoo.</li>
 </ul>
-<p><img alt="The dialog that sends an invoice, with Cc and Bcc" src="https://raw.githubusercontent.com/BM1-de/odoo-mail-cc-bcc/19.0/account_move_send_cc_bcc/static/description/invoice_send.png" /></p>
+<p><img alt="The dialog that sends an invoice, with Cc and Bcc" src="https://raw.githubusercontent.com/BM1-de/odoo-mail-cc-bcc/20.0/account_move_send_cc_bcc/static/description/invoice_send.png" /></p>
 <p>Other modules pass the copies to the sending like the recipients, as
 lists of partner IDs in the settings <tt class="docutils literal">mail_partner_cc_ids</tt> and
 <tt class="docutils literal">mail_partner_bcc_ids</tt>:</p>
@@ -428,46 +429,52 @@ self.env[&quot;account.move.send&quot;]._generate_and_send_invoices(
 <ul class="simple">
 <li>Sending several invoices at once has no dialog per invoice and
 therefore no Cc and Bcc.</li>
-<li>The Cc of the email template is added to <em>To</em> as in Odoo itself. The
-recipients still get one common email.</li>
+<li>The Cc of the email template is added to <em>To</em> as Odoo does it in this
+dialog. The recipients still get one common email.</li>
 </ul>
 </div>
 <div class="section" id="changelog">
 <h1><a class="toc-backref" href="#toc-entry-3">Changelog</a></h1>
 <div class="section" id="section-1">
-<h2><a class="toc-backref" href="#toc-entry-4">19.0.1.0.0 (2026-11-19)</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-4">20.0.1.0.0 (2026-11-19)</a></h2>
+<ul class="simple">
+<li>Version for Odoo 20.</li>
+</ul>
+</div>
+<div class="section" id="section-2">
+<h2><a class="toc-backref" href="#toc-entry-5">19.0.1.0.0 (2026-11-19)</a></h2>
 <ul class="simple">
 <li>First version.</li>
 </ul>
 </div>
 </div>
 <div class="section" id="bug-tracker">
-<h1><a class="toc-backref" href="#toc-entry-5">Bug Tracker</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-6">Bug Tracker</a></h1>
 <p>Bugs are tracked on <a class="reference external" href="https://github.com/BM1-de/odoo-mail-cc-bcc/issues">GitHub Issues</a>.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us to smash it by providing a detailed and welcomed
-<a class="reference external" href="https://github.com/BM1-de/odoo-mail-cc-bcc/issues/new?body=module:%20account_move_send_cc_bcc%0Aversion:%2019.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
+<a class="reference external" href="https://github.com/BM1-de/odoo-mail-cc-bcc/issues/new?body=module:%20account_move_send_cc_bcc%0Aversion:%2020.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**">feedback</a>.</p>
 <p>Do not contact contributors directly about support or help with technical issues.</p>
 </div>
 <div class="section" id="credits">
-<h1><a class="toc-backref" href="#toc-entry-6">Credits</a></h1>
+<h1><a class="toc-backref" href="#toc-entry-7">Credits</a></h1>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#toc-entry-7">Authors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-8">Authors</a></h2>
 <ul class="simple">
 <li>Baumgärtner Marketing GmbH</li>
 </ul>
 </div>
 <div class="section" id="contributors">
-<h2><a class="toc-backref" href="#toc-entry-8">Contributors</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-9">Contributors</a></h2>
 <ul class="simple">
 <li>Phillip Baumgärtner <a class="reference external" href="mailto:baumgaertner&#64;bm1.de">baumgaertner&#64;bm1.de</a></li>
 </ul>
 </div>
 <div class="section" id="maintainers">
-<h2><a class="toc-backref" href="#toc-entry-9">Maintainers</a></h2>
+<h2><a class="toc-backref" href="#toc-entry-10">Maintainers</a></h2>
 <p>Current maintainer:</p>
 <p><a class="reference external image-reference" href="https://github.com/bm1-phillip"><img alt="bm1-phillip" src="https://github.com/bm1-phillip.png?size=40px" /></a></p>
-<p>This module is part of the <a class="reference external" href="https://github.com/BM1-de/odoo-mail-cc-bcc/tree/19.0/account_move_send_cc_bcc">BM1-de/odoo-mail-cc-bcc</a> project on GitHub.</p>
+<p>This module is part of the <a class="reference external" href="https://github.com/BM1-de/odoo-mail-cc-bcc/tree/20.0/account_move_send_cc_bcc">BM1-de/odoo-mail-cc-bcc</a> project on GitHub.</p>
 <p>You are welcome to contribute.</p>
 </div>
 </div>

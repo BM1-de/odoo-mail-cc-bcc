@@ -2,9 +2,9 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Email Cc and Bcc in One Email",
-    "summary": "Cc and Bcc recipients in the email composer, sent as one single "
-    "email to all recipients instead of one email per recipient",
-    "version": "19.0.1.0.0",
+    "summary": "Bcc recipients in the email composer, and one single email to "
+    "the To, Cc and Bcc recipients instead of one email per recipient",
+    "version": "20.0.1.0.0",
     "category": "Productivity/Discuss",
     "website": "https://github.com/BM1-de/odoo-mail-cc-bcc",
     "author": "Baumgärtner Marketing GmbH",

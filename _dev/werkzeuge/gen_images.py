@@ -84,9 +84,9 @@ for addon, rows in (
         "mail_send_cc_bcc",
         (
             "Email Cc and Bcc in One Email",
-            "Cc and Bcc in the email composer, and one single email",
-            "to all recipients instead of one email per recipient",
-            "Odoo 19 · quotations, orders, messages to customers",
+            "Bcc in the email composer, and one single email to the",
+            "To, Cc and Bcc recipients instead of one email each",
+            "Odoo 20 · quotations, orders, messages to customers",
         ),
     ),
     (
@@ -95,7 +95,7 @@ for addon, rows in (
             "Invoice Email Cc and Bcc",
             "Cc and Bcc when sending an invoice by email, and one",
             "single email with the invoice to all recipients",
-            "Odoo 19 · invoices and credit notes",
+            "Odoo 20 · invoices and credit notes",
         ),
     ),
 ):

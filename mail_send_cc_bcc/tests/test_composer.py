@@ -37,6 +37,8 @@ class TestComposer(MailCommon):
     def test_send_with_cc_and_bcc(self):
         form = self._composer_form()
         form.partner_ids.add(self.customer)
+        # the button "Cc" of Odoo shows the lines Cc and Bcc
+        form.partner_cc_allowed = True
         form.partner_cc_ids.add(self.copy)
         form.partner_bcc_ids.add(self.blind)
         form.subject = "Angebot"
@@ -92,8 +94,8 @@ class TestComposer(MailCommon):
         self.assertEqual(form.partner_cc_ids[:], self.copy)
         self.assertFalse(form.partner_bcc_ids[:])
 
-    def test_mass_mail_ignores_copies(self):
-        """Cc and Bcc belong to the mode with one document."""
+    def test_mass_mail_ignores_blind_copies(self):
+        """Bcc belongs to the mode with one document."""
         composer = (
             self.env["mail.compose.message"]
             .with_user(self.user_employee)
@@ -106,7 +108,6 @@ class TestComposer(MailCommon):
                 {
                     "subject": "Rundschreiben",
                     "body": "<p>Guten Tag</p>",
-                    "partner_cc_ids": [(4, self.copy.id)],
                     "partner_bcc_ids": [(4, self.blind.id)],
                 }
             )
@@ -119,6 +120,7 @@ class TestComposer(MailCommon):
     def test_scheduled_message_keeps_the_copies(self):
         form = self._composer_form()
         form.partner_ids.add(self.customer)
+        form.partner_cc_allowed = True
         form.partner_cc_ids.add(self.copy)
         form.partner_bcc_ids.add(self.blind)
         form.subject = "Angebot"
